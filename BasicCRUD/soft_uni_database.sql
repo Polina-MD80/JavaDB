@@ -1674,18 +1674,5 @@ INSERT INTO `towns` (`town_id`, `name`) VALUES
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 
 
- #1
- SELECT * from `departments`;
- 
- #2
- SELECT `name` FROM `departments`;
- 
- #3
- SELECT `first_name`, `last_name`, `salary` FROM `employees`;
- 
- #4
- SELECT `first_name`, `middle_name`, `last_name` FROM `employees`;
 
- #5
- SELECT concat (`first_name`, '.', `last_name`, '@softuni.bg') as`full_email_address` FROM `employees`;
  

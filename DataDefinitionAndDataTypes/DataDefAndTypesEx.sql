@@ -267,3 +267,4 @@ SET
 `salary` = `salary` * 1.1;
 
 
+TRUNCATE TABLE `occupancies`;
