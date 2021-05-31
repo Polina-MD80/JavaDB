@@ -102,7 +102,7 @@ LIMIT 7;
 
 update  employees
 set salary = salary *1.12
-WHERE department_id in (1,2,3,4);
+WHERE department_id in (1,2,11,4);
 
 SELECT salary FROM employees;
 
@@ -115,12 +115,14 @@ ORDER BY peak_name;
 
 SELECT country_name, population FROM countries
 WHERE continent_code = 'EU'
-ORDER BY population DESC, country_name;
+ORDER BY population DESC, country_name
+LIMIT 30;
 
 #23
  
  SELECT  country_name, country_code, if(currency_code = 'EUR', 'Euro', 'Not Euro')
- as `Currency` FROM countries;
+ as `Currency` FROM countries
+ ORDER BY country_name;
  
  #24
  SELECT `name` FROM characters
