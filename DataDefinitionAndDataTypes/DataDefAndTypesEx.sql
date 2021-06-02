@@ -257,9 +257,12 @@ SELECT * FROM `employees`
 order by `salary` desc;
 
 
-SELECT `name` FROM `towns`;
-SELECT `name` FROM `departments`;
-SELECT `first_name`, `last_name`, `job_title`, `salary` FROM`employees`;
+SELECT `name` FROM `towns`
+ORDER BY `name`;
+SELECT `name` FROM `departments`
+ORDER BY `name`;
+SELECT `first_name`, `last_name`, `job_title`, `salary` FROM`employees`
+ORDER BY salary DESC;
 
 
 UPDATE `employees`

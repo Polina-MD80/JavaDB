@@ -46,7 +46,7 @@ WHERE char_length(last_name) = 5;
 
 #10
 SELECT  country_name, iso_code FROM countries
-WHERE country_name like '%A%A%A'
+WHERE country_name like '%A%A%A%'
 ORDER BY iso_code;
 
 #11
@@ -106,5 +106,5 @@ as `Duration` from games;
  
  SELECT product_name, order_date, 
  date_add(order_date, interval 3 day) as `pay_due`, 
- date_add(order_date, interval 30 day) as `deliver_due`
+ date_add(order_date, interval 1 month) as `deliver_due`
  from orders;

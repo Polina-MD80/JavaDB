@@ -15,7 +15,7 @@ GROUP BY department_id;
  order by department_id;
  
  #3
- select department_id, min(salary) as `Min Salary`
+ select department_id, round((salary),2) as `Min Salary`
  from employees
  GROUP BY department_id
  having `Min salary` >=800 ;
@@ -26,11 +26,13 @@ GROUP BY department_id;
  price > 8;
  
  #5
- select category_id,
- round(avg(price),2) AS 'Average Price',
- min(price) AS 'Cheapest Product',
- max(price) AS 'Most Expensive Product'
- from products 
- GROUP BY category_id
- order by category_id;
+SELECT 
+    category_id,
+    ROUND(AVG(price), 2) AS 'Average Price',
+    MIN(price) AS 'Cheapest Product',
+    MAX(price) AS 'Most Expensive Product'
+FROM
+    products
+GROUP BY category_id
+ORDER BY category_id;
  
