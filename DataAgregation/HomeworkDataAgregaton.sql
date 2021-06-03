@@ -132,16 +132,13 @@ SELECT
     first_name, last_name, department_id
 FROM
     employees AS `e1`
-   WHERE select
-    (salary > (SELECT 
+   WHERE salary > (SELECT 
             AVG(salary)
         FROM
             employees AS `e2`
         WHERE
             e1.department_id = e2.department_id
-        GROUP BY department_id)) from employees
-        order by depatment_id,employee_id
-        limit 10)
+        GROUP BY department_id)
         
 ORDER BY department_id , employee_id
 ;
