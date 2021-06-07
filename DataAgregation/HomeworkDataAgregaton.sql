@@ -20,7 +20,7 @@ GROUP BY deposit_group
 HAVING min(magic_wand_size)
 LIMIT 1;
 
-
+ 
 #5
 SELECT deposit_group, sum(deposit_amount) AS `total_sum`FROM wizzard_deposits
 GROUP BY deposit_group
@@ -49,17 +49,21 @@ ORDER BY total_sum DESC;
  ORDER BY magic_wand_creator, deposit_group;
  
  #9
- SELECT (case
- WHEN age BETWEEN 0 and 10 then '[0-10]'
- when age between 11 and 20 then '[11-20]'
- when age between 21 and 30 then '[21-30]'
- when age between 31 and 40 then '[31-40]'
- when age between 41 and 50 then '[41-50]'
- when age between 51 and 60 then '[51-60]'
- else '[61+]'
-end) as `age_group`, count(*) AS `wizard_count` from wizzard_deposits 
-group by age_group
-order by age_group;
+SELECT 
+    (CASE
+        WHEN age BETWEEN 0 AND 10 THEN '[0-10]'
+        WHEN age BETWEEN 11 AND 20 THEN '[11-20]'
+        WHEN age BETWEEN 21 AND 30 THEN '[21-30]'
+        WHEN age BETWEEN 31 AND 40 THEN '[31-40]'
+        WHEN age BETWEEN 41 AND 50 THEN '[41-50]'
+        WHEN age BETWEEN 51 AND 60 THEN '[51-60]'
+        ELSE '[61+]'
+    END) AS `age_group`,
+    COUNT(*) AS `wizard_count`
+FROM
+    wizzard_deposits
+GROUP BY age_group
+ORDER BY age_group;
 
 #10
 
@@ -69,18 +73,21 @@ GROUP BY first_letter
 ORDER BY first_letter;
 
 #11
-SELECT deposit_group, is_deposit_expired, AVG(deposit_interest) AS `average_interest` FROM wizzard_deposits
-WHERE deposit_start_date > 1985-01-01
-GROUP BY deposit_group, is_deposit_expired
-ORDER BY deposit_group DESC, is_deposit_expired;
-#
-SELECT deposit_group, is_deposit_expired, AVG(deposit_interest) AS `average_interest` FROM wizzard_deposits
-WHERE deposit_start_date > 1985-01-01 and deposit_group = 'Venomous Tongue'
-GROUP BY deposit_group, is_deposit_expired
-ORDER BY deposit_group DESC, is_deposit_expired;
+SELECT 
+    deposit_group,
+    is_deposit_expired,
+    AVG(deposit_interest) AS `average_interest`
+FROM
+    wizzard_deposits
+WHERE
+    deposit_start_date > '1985-01-01'
+GROUP BY deposit_group , is_deposit_expired
+ORDER BY deposit_group DESC , is_deposit_expired;
+
+
 #12
 select department_id, min(salary) as minimum_salary from employees
-WHERE department_id in(2, 5, 7) and hire_date > 2000-01-01
+WHERE department_id in(2, 5, 7) and hire_date > '2000-01-01'
 group by department_id
 order by department_id;
 
@@ -129,19 +136,19 @@ ORDER BY department_id;
 #17
 
 SELECT 
-    first_name, last_name, department_id
+    e1.first_name, e1.last_name, e1.department_id
 FROM
     employees AS `e1`
-   WHERE salary > (SELECT 
-            AVG(salary)
+WHERE
+    e1.salary > (SELECT 
+            AVG(e2.salary)
         FROM
             employees AS `e2`
         WHERE
             e1.department_id = e2.department_id
-        GROUP BY department_id)
-        
-ORDER BY department_id , employee_id
-;
+        )
+ORDER BY e1.department_id , e1.employee_id
+LIMIT 10;
 
 
 
