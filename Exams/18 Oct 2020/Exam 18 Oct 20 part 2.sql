@@ -5,14 +5,18 @@ LEFT JOIN products_stores as ps ON p.id = ps.product_id
 WHERE ps.product_id is NULL;
 
 #3.	Update
-
+ALTER TABLE `employees` 
+DROP FOREIGN KEY `fk_employees_employees`;
+ALTER TABLE `employees` 
+DROP INDEX `fk_employees_employees` ;
+;
 UPDATE employees 
 SET manager_id = 3 AND salary = salary - 500
 WHERE year(hire_date) > '2003' and store_id NOT in (5,14);
 
 # 4.	Delete
 DELETE FROM employees
-WHERE manager_id IS NOT NULL and salary>=6000 AND id not in (select manager_id from employees);
+WHERE manager_id IS NOT NULL and salary>=6000 ;
 
 #5.	Employees
 SELECT first_name, middle_name, last_name, salary, hire_date FROM employees
@@ -85,3 +89,4 @@ CALL udp_update_product_price('07 Armistice Parkway');
 SELECT name, price FROM products WHERE id = 15;
 CALL udp_update_product_price('1 Cody Pass');
 SELECT name, price FROM products WHERE id = 17;
+
