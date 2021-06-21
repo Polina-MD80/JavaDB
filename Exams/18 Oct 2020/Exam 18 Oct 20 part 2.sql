@@ -5,13 +5,12 @@ LEFT JOIN products_stores as ps ON p.id = ps.product_id
 WHERE ps.product_id is NULL;
 
 #3.	Update
-ALTER TABLE `employees` 
-DROP FOREIGN KEY `fk_employees_employees`;
-ALTER TABLE `employees` 
-DROP INDEX `fk_employees_employees` ;
-;
+
 UPDATE employees 
-SET manager_id = 3 AND salary = salary - 500
+SET manager_id = 3 
+WHERE year(hire_date) > '2003' and store_id NOT in (5,14);
+UPDATE employees 
+SET salary = salary - 500
 WHERE year(hire_date) > '2003' and store_id NOT in (5,14);
 
 # 4.	Delete
